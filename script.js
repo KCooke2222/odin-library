@@ -26,7 +26,8 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function displayBooks() {
-  for (book of myLibrary) {
+  bookshelf.textContent = ""; // clear old renders
+  for (const book of myLibrary) {
     const bookDisplay = document.createElement("div");
     bookDisplay.className = "book";
     ["title", "author", "pages", "read"].forEach((key) => {
@@ -41,4 +42,26 @@ function displayBooks() {
 
 const bookshelf = document.querySelector(".bookshelf");
 
-displayBooks();
+const dialog = document.querySelector("#bookDialog");
+const form = document.querySelector("#bookForm");
+const newBookBtn = document.querySelector("#newBookBtn");
+const cancelBtn = document.querySelector("#cancelBtn");
+
+newBookBtn.addEventListener("click", () => dialog.showModal());
+cancelBtn.addEventListener("click", () => dialog.close());
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // stops page refresh / “sending”
+  const data = new FormData(form); // grabs inputs by name="..."
+
+  addBookToLibrary(
+    data.get("title"),
+    data.get("author"),
+    Number(data.get("pages")),
+    data.get("read") === "on",
+  );
+
+  displayBooks();
+  form.reset();
+  dialog.close();
+});

@@ -9,6 +9,24 @@
   <body>
     <div class="bookshelf"></div>
 
+    <button id="newBookBtn">New Book</button>
+
+    <dialog id="bookDialog">
+      <form id="bookForm" method="dialog">
+        <label>Title <input name="title" required /></label>
+        <label>Author <input name="author" required /></label>
+        <label
+          >Pages <input name="pages" type="number" min="1" required
+        /></label>
+        <label>Read <input name="read" type="checkbox" /></label>
+
+        <menu>
+          <button type="button" id="cancelBtn">Cancel</button>
+          <button id="submitBtn" value="default">Add</button>
+        </menu>
+      </form>
+    </dialog>
+
     <script src="script.js"></script>
   </body>
 </html>

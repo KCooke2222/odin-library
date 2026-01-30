@@ -16,3 +16,17 @@
   align-items: center;
   background-color: tan;
 }
+
+.read {
+  color: green;
+}
+
+.not-read {
+  color: red;
+}
+
+.read:hover,
+.not-read:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
